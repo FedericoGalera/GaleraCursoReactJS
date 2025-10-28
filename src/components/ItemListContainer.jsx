@@ -1,10 +1,20 @@
-// Recibe un string por props 
+import { useParams } from "react-router-dom";
+
 export default function ItemListContainer({ greeting }) {
+  const { categoryId } = useParams();
+
   return (
     <main className="container">
       <h1 className="title">{greeting}</h1>
-      {/* Aquí en el futuro va el catálogo de productos */}
-      <p className="subtitle">Próximamente: listado de productos…</p>
+      {categoryId ? (
+        <p className="subtitle">
+          Categoría seleccionada → <strong>{categoryId}</strong>
+        </p>
+      ) : (
+        <p className="subtitle">
+          Próximamente: listado y filtros por categoría.
+        </p>
+      )}
     </main>
   );
 }

@@ -1,5 +1,6 @@
+import { FiShoppingCart } from "react-icons/fi";
+
 export default function CartWidget() {
-  // Burbuja con valor estático (requisito)
   const quantity = 3;
 
   return (
@@ -8,8 +9,7 @@ export default function CartWidget() {
       className="cart-btn"
       title="Carrito de compras"
     >
-      {/* Icono simple para evitar dependencias */}
-      <span className="cart-icon">🛒</span>
+      <FiShoppingCart className="cart-icon" />
       <span className="cart-badge">{quantity}</span>
     </button>
   );

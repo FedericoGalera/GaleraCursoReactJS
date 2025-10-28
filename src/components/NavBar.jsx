@@ -1,22 +1,37 @@
+import { NavLink, Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 
-export default function NavBar() {
+const CATEGORIES = [
+  { id: "notebooks", label: "Notebooks" },
+  { id: "perifericos", label: "Periféricos" },
+  { id: "componentes", label: "Componentes" },
+];
+
+export default function NavBar({ brand = "Feyoox's Store" }) {
   return (
     <header className="navbar">
       <div className="nav-inner">
-        {/* Brand / Logo */}
-        <a className="brand" href="/">
-          Feyoox's Store
-        </a>
+<Link className="brand" to="/" aria-label={brand}>
+  <img
+    src="/logo.png"
+    alt={brand}
+    className="brand-logo"
+  />
+  <span className="brand-text">{brand}</span>
+</Link>
 
-        {/* Enlaces de navegación (categorías) */}
         <nav className="nav-links">
-          <a href="#" className="nav-link">Inicio</a>
-          <a href="#" className="nav-link">Productos</a>
-          <a href="#" className="nav-link">Contacto</a>
+          {CATEGORIES.map((c) => (
+            <NavLink
+              key={c.id}
+              to={`/category/${c.id}`}
+              className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            >
+              {c.label}
+            </NavLink>
+          ))}
         </nav>
 
-        {/* CartWidget se renderiza dentro de NavBar (requisito) */}
         <CartWidget />
       </div>
     </header>
