@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useCart } from "../context/CartContext.jsx";
 
 export default function ItemDetail({ product }) {
+  const { addToCart } = useCart();
+
   if (!product) return null;
 
   return (
@@ -19,7 +22,10 @@ export default function ItemDetail({ product }) {
         <p className="detail-description">{product.description}</p>
         <p className="detail-price">${product.price}</p>
         <p className="detail-stock">Stock disponible: {product.stock}</p>
-        <button className="btn">Agregar al carrito</button>
+
+        <button className="btn" onClick={() => addToCart(product)}>
+          Agregar al carrito
+        </button>
       </div>
     </motion.section>
   );
