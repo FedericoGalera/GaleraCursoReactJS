@@ -131,3 +131,103 @@ body {
 body {
   background: url("/fondo.png") center/cover fixed no-repeat;
 }
+
+/* === DETALLE DE PRODUCTO === */
+.detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 24px;
+  background: #111827;
+  border: 1px solid #0b1220;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.detail-thumb {
+  flex: 1 1 300px;
+  max-width: 400px;
+  display: grid;
+  place-items: center;
+}
+
+.detail-thumb img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.detail-info {
+  flex: 2 1 400px;
+}
+
+.detail-title {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.detail-description {
+  color: #d1d5db;
+  margin-bottom: 8px;
+}
+
+.detail-price {
+  color: #a7f3d0;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.detail-stock {
+  color: #9ca3af;
+  margin-bottom: 16px;
+}
+
+/* === GRID DE LISTADO === */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* === CARD === */
+.card {
+  background: #111827;
+  border: 1px solid #0b1220;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-thumb {
+  background: #0b1220;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-body { padding: 12px; }
+.card-title { margin: 0 0 4px; font-size: 16px; color: #fff; }
+.card-price { margin: 0 0 8px; color: #a7f3d0; font-weight: 600; }
+.btn {
+  display: inline-block;
+  padding: 8px 10px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn:hover { background: #1d4ed8; }
+
+/* === ESTADOS === */
+.muted { color: #9ca3af; }
+.error { color: #fca5a5; }
