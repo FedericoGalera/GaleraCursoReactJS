@@ -1,6 +1,6 @@
 # 🛍️ FEYOOX'S STORE
 
-Proyecto desarrollado en React para la Diplomatura de Desarrollo Frontend (Coderhouse).  
+Proyecto desarrollado en React para el Curso de ReactJS en Coderhouse.  
 Entrega correspondiente a la **Preentrega Nº2 – Navega las Rutas**.
 
 ---
