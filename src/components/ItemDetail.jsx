@@ -1,8 +1,16 @@
 import { motion } from "framer-motion";
 import { useCart } from "../context/CartContext.jsx";
+import ItemCount from "./ItemCount.jsx";
+import { useState } from "react";
 
 export default function ItemDetail({ product }) {
   const { addToCart } = useCart();
+  const [added, setAdded] = useState(false);
+
+  const handleAdd = (quantity) => {
+    addToCart({ ...product, quantity });
+    setAdded(true);
+  };
 
   if (!product) return null;
 
@@ -23,9 +31,13 @@ export default function ItemDetail({ product }) {
         <p className="detail-price">${product.price}</p>
         <p className="detail-stock">Stock disponible: {product.stock}</p>
 
-        <button className="btn" onClick={() => addToCart(product)}>
-          Agregar al carrito
-        </button>
+        {!added ? (
+          <ItemCount stock={product.stock} onAdd={handleAdd} />
+        ) : (
+          <p style={{ color: "#a7f3d0", marginTop: "12px" }}>
+            Producto agregado al carrito ✔
+          </p>
+        )}
       </div>
     </motion.section>
   );

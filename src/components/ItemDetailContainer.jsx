@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../data/products";
+import Loader from "./Loader.jsx";
 import ItemDetail from "./ItemDetail.jsx";
 
 export default function ItemDetailContainer() {
@@ -30,7 +31,7 @@ export default function ItemDetailContainer() {
 
   return (
     <main className="container">
-      {status === "loading" && <p className="muted">Cargando producto...</p>}
+      {status === "loading" && <Loader text="Cargando producto..." />}
       {status === "error" && <p className="error">Error al cargar el producto.</p>}
       {status === "success" && product && <ItemDetail product={product} />}
     </main>

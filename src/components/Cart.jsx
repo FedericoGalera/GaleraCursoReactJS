@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
 
 export default function Cart() {
-  const { cart, clearCart } = useCart();
-
-  // Calcular total
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+const { cart, clearCart, getTotalPrice } = useCart();
+const total = getTotalPrice();
 
   if (cart.length === 0) {
     return (
@@ -35,10 +33,10 @@ export default function Cart() {
         ))}
       </section>
 
-      <div className="cart-summary">
-        <h2>Total: ${total.toFixed(2)}</h2>
-        <button className="btn" onClick={clearCart}>Vaciar carrito</button>
-      </div>
+<div className="cart-summary">
+  <h2>Total: ${total.toFixed(2)}</h2>
+  <button className="btn" onClick={clearCart}>Vaciar carrito</button>
+</div>
     </main>
   );
 }

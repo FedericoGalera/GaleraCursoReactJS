@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import { getProducts } from "../data/products";
+import Loader from "./Loader.jsx";
 
 export default function ItemListContainer({ greeting }) {
-  const { categoryId } = useParams(); // undefined en “/”
+  const { categoryId } = useParams(); 
   const [products, setProducts] = useState([]);
-  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [status, setStatus] = useState("idle"); 
 
   useEffect(() => {
     let alive = true;
@@ -23,7 +24,7 @@ export default function ItemListContainer({ greeting }) {
         setStatus("error");
       });
     return () => { alive = false; };
-  }, [categoryId]); // dependencia en URL
+  }, [categoryId]); 
 
   return (
     <main className="container">
@@ -33,7 +34,7 @@ export default function ItemListContainer({ greeting }) {
         <p className="subtitle">Categoría seleccionada → <strong>{categoryId}</strong></p>
       )}
 
-      {status === "loading" && <p className="muted">Cargando productos…</p>}
+      {status === "loading" && <Loader text="Cargando productos..." />}
       {status === "error" && <p className="error">No se pudo cargar el catálogo.</p>}
       {status === "success" && <ItemList products={products} />}
 
