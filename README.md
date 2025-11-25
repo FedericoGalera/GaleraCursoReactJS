@@ -1,118 +1,92 @@
-🛍️ FEYOOX'S STORE — E-commerce con React + Firebase
+🛍️ Feyoox Store
+E-commerce desarrollado con React + Firebase (Entrega Final – Coderhouse)
 
-Proyecto desarrollado en React como entrega final del curso ReactJS – Coderhouse.
-Aplicación completa de e-commerce con:
+⭐ Descripción
 
-SPA real mediante React Router
+Feyoox Store es una Single Page Application completa de e-commerce desarrollada en React, conectada en tiempo real a Firebase Firestore, con manejo global de carrito mediante Context API, navegación dinámica con React Router, validación real de stock y generación de órdenes persistidas en la base de datos.
 
-Carrito global con Context API
+El proyecto cumple al 100% con los requisitos de la Entrega Final del curso ReactJS (Coderhouse).
 
-Consumo de Firestore para productos
+🚀 Características principales
+🔹 SPA real con React Router
 
-Checkout con generación de órdenes en la base de datos
+Rutas implementadas:
 
-Validaciones de stock
+/ — Catálogo completo
 
-Navegación por categorías
+/category/:categoryId — Catálogo filtrado
 
-Componentes desacoplados y reutilizables
+/item/:itemId — Detalle de producto
 
-🚀 Descripción general
+/cart — Carrito
 
-FeyooX's Store es una Single Page Application de e-commerce que permite:
+/checkout — Checkout y generación de orden
 
-Navegar productos por categorías
-
-Ver el detalle de cada producto
-
-Seleccionar cantidad con control de stock real
-
-Agregar ítems al carrito con validación global
-
-Visualizar el carrito y totales
-
-Finalizar una compra mediante un formulario
-
-Generar una orden real en Firestore
-
-Recibir el ID único de la compra
-
-Toda la información de productos y órdenes se gestiona desde Firebase.
-
-🧱 Funcionalidades principales
-🔗 Routing dinámico (SPA)
-
-/ → Catálogo completo
-
-/category/:categoryId → Catálogo filtrado
-
-/item/:itemId → Detalle de producto
-
-/cart → Carrito
-
-/checkout → Proceso de compra
-
-* → Página 404
+* — Página 404
 
 Sin recargas de navegador.
 
-🛒 Carrito con Context API
+🔹 Carrito global con Context API
 
-Estado global del carrito
+Estado global compartido
 
-Suma de cantidades
+Suma dinámica de cantidades
+
+Cálculo de totales
 
 Validación estricta de stock
 
-Persistencia opcional con localStorage
+Persistencia con localStorage
 
-Subtotales y total general
+Sincronización entre carrito e interfaz
 
-📦 Componente ItemCount avanzado
+Eliminación de ítems y vaciado total
 
-Estado interno
+🔹 Conexión a Firestore
 
-Límite inferior = 1
+Lectura de productos desde la colección products
 
-Límite superior = stock disponible
+Filtrado por categoría con query + where
 
-Botones deshabilitados según estado
+Lectura individual con getDoc
 
-Envía cantidad final al carrito
+Inserción de órdenes en orders
 
-Se oculta luego de agregar el producto
+Timestamps generados con serverTimestamp()
 
-🗄️ Conexión a Firebase Firestore
+🔹 Checkout completamente funcional
 
-Colección products
+Formulario controlado (nombre, email, teléfono)
 
-Lectura asincrónica con getDocs, getDoc y query
-
-Filtrado por categoría mediante where
-
-Colección orders
-
-Inserción de órdenes mediante addDoc y serverTimestamp
-
-📝 Checkout completo
-
-Formulario controlado (name, email, phone)
-
-Validaciones básicas (required)
+Validación obligatoria de campos
 
 Loader durante el envío
 
-Generación de documento en Firestore
+Generación real de orden
 
-Visualización del ID único de orden
+Visualización del ID único generado en Firestore
 
 Limpieza automática del carrito
 
-🎨 Interfaz y UX
+🔹 ItemCount avanzado
 
-Estilos personalizados en CSS
+Control propio del estado
 
-Diseño limpio y responsive
+Límite inferior: 1
+
+Límite superior: stock disponible
+
+Botones deshabilitados según estado
+
+Integración directa con el carrito
+
+Se oculta luego de agregar el producto
+
+Stock dinámico (stock Firestore − stock ya agregado)
+
+🔹 UX y diseño
+
+Estilos en CSS modularizado
 
 Loader animado
 
@@ -128,76 +102,38 @@ Mensajes condicionales:
 
 “Error al cargar productos”
 
-⚙️ Tecnologías utilizadas
+🛠️ Tecnologías utilizadas
 
 React + Vite
 
 React Router DOM
 
-Firebase / Firestore
+Firebase Firestore
 
 Context API
 
-Framer Motion (animaciones)
+Framer Motion
 
 React Icons
 
 CSS3
 
-📂 Estructura del proyecto
-src/
-├─ components/
-│  ├─ NavBar.jsx
-│  ├─ CartWidget.jsx
-│  ├─ ItemListContainer.jsx
-│  ├─ ItemList.jsx
-│  ├─ Item.jsx
-│  ├─ ItemDetailContainer.jsx
-│  ├─ ItemDetail.jsx
-│  ├─ ItemCount.jsx
-│  ├─ Cart.jsx
-│  ├─ CheckoutForm.jsx
-│  └─ NotFound.jsx
-│
-├─ context/
-│  └─ CartContext.jsx
-│
-├─ data/
-│  └─ product.js
-│
-├─ firebase/
-│  └─ config.js
-│
-├─ App.css
-├─ App.jsx
-├─ main.jsx
-├─ index.css
-│
-public/
-├─ logo.png
-├─ fondo.png
-└─ imgs/
-   ├─ nb-acer-01.png
-   ├─ nb-lenovo-01.png
-   ├─ mous-logi-01.png
-   └─ ...
-
 ▶️ Cómo ejecutar el proyecto
 1. Clonar el repositorio
-git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-cd TU_REPOSITORIO
+git clone https://github.com/TU_USUARIO/TU_REPO.git
+cd TU_REPO
 
 2. Instalar dependencias
 npm install
 
 3. Configurar Firebase
 
-Crear un archivo en:
+Crear el archivo:
 
 src/firebase/config.js
 
 
-Con el contenido proporcionado por Firebase:
+Con tu configuración:
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -207,20 +143,17 @@ const firebaseConfig = {
   authDomain: "TU_AUTH_DOMAIN",
   projectId: "TU_PROJECT_ID",
   storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_SENDER_ID",
+  messagingSenderId: "TU_MESSAGING_SENDER_ID",
   appId: "TU_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-4. Ejecutar en modo desarrollo
+4. Ejecutar modo desarrollo
 npm run dev
 
-
-Abrir la URL que muestra la terminal.
-
-📦 Deploy (Vercel)
+🌐 Deploy (Vercel)
 
 Instalar Vercel:
 
@@ -232,7 +165,7 @@ Generar build:
 npm run build
 
 
-Deploy:
+Deployar:
 
 vercel
 
@@ -243,9 +176,9 @@ Framework: Vite
 
 Output directory: dist/
 
-🧩 Autor
+👤 Autor
 
 Federico Galera
 📧 angelrossanigo@gmail.com
 
-💼 GitHub: https://github.com/FedericoGalera
+💻 GitHub: https://github.com/FedericoGalera
