@@ -1,4 +1,7 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
+import ItemCount from "./ItemCount.jsx";
 
 export default function ItemDetail({ product }) {
   const { addToCart, getProductQuantity } = useCart();
