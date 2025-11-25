@@ -1,46 +1,75 @@
 // src/components/ItemListContainer.jsx
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ItemList from "./ItemList";
-import { getProducts } from "../data/products";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase/config.js";
+
 import Loader from "./Loader.jsx";
+import ItemList from "./ItemList.jsx";
 
 export default function ItemListContainer({ greeting }) {
-  const { categoryId } = useParams(); 
+  const { categoryId } = useParams();
+
   const [products, setProducts] = useState([]);
-  const [status, setStatus] = useState("idle"); 
+  const [status, setStatus] = useState("loading"); 
 
   useEffect(() => {
-    let alive = true;
     setStatus("loading");
-    getProducts(categoryId)
-      .then((list) => {
-        if (!alive) return;
-        setProducts(list);
+
+    const productsRef = collection(db, "products");
+
+    // Si hay categoría -> filtrar
+    const q = categoryId
+      ? query(productsRef, where("category", "==", categoryId))
+      : productsRef;
+
+    getDocs(q)
+      .then((snapshot) => {
+        const items = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setProducts(items);
         setStatus("success");
       })
-      .catch(() => {
-        if (!alive) return;
+      .catch((err) => {
+        console.error("Error Firestore:", err);
         setStatus("error");
       });
-    return () => { alive = false; };
-  }, [categoryId]); 
+  }, [categoryId]);
 
+  // Loader
+  if (status === "loading") {
+    return <Loader text="Cargando productos..." />;
+  }
+
+  // Error
+  if (status === "error") {
+    return (
+      <main className="container">
+        <h1 className="title">Error al cargar productos</h1>
+        <p className="muted">Por favor, intenta nuevamente más tarde.</p>
+      </main>
+    );
+  }
+
+  // Sin productos en la categoría
+  if (products.length === 0) {
+    return (
+      <main className="container">
+        <h1 className="title">{greeting}</h1>
+        <p className="muted">No hay productos disponibles en esta categoría.</p>
+      </main>
+    );
+  }
+
+  // Success
   return (
     <main className="container">
       <h1 className="title">{greeting}</h1>
-
-      {categoryId && (
-        <p className="subtitle">Categoría seleccionada → <strong>{categoryId}</strong></p>
-      )}
-
-      {status === "loading" && <Loader text="Cargando productos..." />}
-      {status === "error" && <p className="error">No se pudo cargar el catálogo.</p>}
-      {status === "success" && <ItemList products={products} />}
-
-      {!categoryId && status === "success" && products.length === 0 && (
-        <p className="muted">No hay productos para mostrar.</p>
-      )}
+      <ItemList products={products} />
     </main>
   );
 }

@@ -1,10 +1,14 @@
-import { motion } from "framer-motion";
 import { useCart } from "../context/CartContext.jsx";
-import ItemCount from "./ItemCount.jsx";
-import { useState } from "react";
 
 export default function ItemDetail({ product }) {
-  const { addToCart } = useCart();
+  const { addToCart, getProductQuantity } = useCart();
+
+  // Cantidad ya agregada de este producto
+  const qtyInCart = getProductQuantity(product.id);
+
+  // Stock restante
+  const availableStock = product.stock - qtyInCart;
+
   const [added, setAdded] = useState(false);
 
   const handleAdd = (quantity) => {
@@ -12,33 +16,30 @@ export default function ItemDetail({ product }) {
     setAdded(true);
   };
 
-  if (!product) return null;
-
   return (
-    <motion.section
-      className="detail"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <section className="detail">
       <div className="detail-thumb">
-        <img src={product.pictureUrl || "/imgs/placeholder.png"} alt={product.title} />
+        <img src={product.pictureUrl} alt={product.title} />
       </div>
 
       <div className="detail-info">
         <h2 className="detail-title">{product.title}</h2>
         <p className="detail-description">{product.description}</p>
         <p className="detail-price">${product.price}</p>
-        <p className="detail-stock">Stock disponible: {product.stock}</p>
+        <p className="detail-stock">
+          Stock disponible: {availableStock}
+        </p>
 
         {!added ? (
-          <ItemCount stock={product.stock} onAdd={handleAdd} />
+          <ItemCount
+            stock={availableStock}
+            initial={1}
+            onAdd={handleAdd}
+          />
         ) : (
-          <p style={{ color: "#a7f3d0", marginTop: "12px" }}>
-            Producto agregado al carrito ✔
-          </p>
+          <Link to="/cart" className="btn">Ir al carrito</Link>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 }

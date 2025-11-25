@@ -351,3 +351,29 @@ body {
   width: 24px;
   text-align: center;
 }
+
+/* === CHECKOUT === */
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+  margin-top: 20px;
+}
+
+.checkout-form input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: none;
+  background: #1e293b;
+  color: #fff;
+}
+
+.checkout-form input::placeholder {
+  color: #64748b;
+}
+
+.checkout-form .btn {
+  margin-top: 10px;
+}
