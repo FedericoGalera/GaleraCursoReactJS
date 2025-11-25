@@ -1,64 +1,61 @@
 🛍️ Feyoox Store
-E-commerce desarrollado con React + Firebase (Entrega Final – Coderhouse)
+E-commerce desarrollado con React + Firebase
+(Proyecto Final – Coderhouse ReactJS)
+⭐ Descripción del proyecto
 
-⭐ Descripción
+Feyoox Store es una aplicación de e-commerce construida como una Single Page Application utilizando React + Vite, conectada en tiempo real a Firebase Firestore.
+La app permite navegar productos por categoría, ver sus detalles, manejar un carrito global con validación estricta de stock y completar una compra generando una orden real en la base de datos.
 
-Feyoox Store es una Single Page Application completa de e-commerce desarrollada en React, conectada en tiempo real a Firebase Firestore, con manejo global de carrito mediante Context API, navegación dinámica con React Router, validación real de stock y generación de órdenes persistidas en la base de datos.
-
-El proyecto cumple al 100% con los requisitos de la Entrega Final del curso ReactJS (Coderhouse).
+El proyecto cumple el 100% de los requisitos del Trabajo Final de ReactJS (Coderhouse).
 
 🚀 Características principales
 🔹 SPA real con React Router
 
 Rutas implementadas:
 
-/ — Catálogo completo
+/ — Catálogo general
 
 /category/:categoryId — Catálogo filtrado
 
 /item/:itemId — Detalle de producto
 
-/cart — Carrito
+/cart — Carrito de compras
 
-/checkout — Checkout y generación de orden
+/checkout — Checkout + generación de orden
 
-* — Página 404
+* — Página 404 (NotFound)
 
-Sin recargas de navegador.
+Navegación sin recargas de navegador.
 
-🔹 Carrito global con Context API
+🔹 Carrito global (Context API)
 
 Estado global compartido
 
-Suma dinámica de cantidades
-
-Cálculo de totales
+Cantidades acumulables
 
 Validación estricta de stock
 
-Persistencia con localStorage
+Sincronización del stock restante
 
-Sincronización entre carrito e interfaz
+Subtotales y total general
 
-Eliminación de ítems y vaciado total
+Persistencia automática en localStorage
 
-🔹 Conexión a Firestore
+🔹 Conexión a Firebase Firestore
 
-Lectura de productos desde la colección products
+Colección products para el catálogo
 
-Filtrado por categoría con query + where
+Colección orders para registrar compras
 
-Lectura individual con getDoc
+Lectura con: getDocs, getDoc, query, where
 
-Inserción de órdenes en orders
+Escritura con: addDoc + serverTimestamp()
 
-Timestamps generados con serverTimestamp()
+🔹 Checkout completo
 
-🔹 Checkout completamente funcional
+Formulario controlado (name, email, phone)
 
-Formulario controlado (nombre, email, teléfono)
-
-Validación obligatoria de campos
+Validación de campos obligatorios
 
 Loader durante el envío
 
@@ -68,25 +65,21 @@ Visualización del ID único generado en Firestore
 
 Limpieza automática del carrito
 
-🔹 ItemCount avanzado
+🔹 Componente ItemCount avanzado
 
-Control propio del estado
+Manejo de estado interno
 
-Límite inferior: 1
+Límite de cantidad según stock restante
 
-Límite superior: stock disponible
-
-Botones deshabilitados según estado
+Botones deshabilitados según disponibilidad
 
 Integración directa con el carrito
 
-Se oculta luego de agregar el producto
+Ocultamiento del contador tras agregar el producto
 
-Stock dinámico (stock Firestore − stock ya agregado)
+🔹 UX/UI
 
-🔹 UX y diseño
-
-Estilos en CSS modularizado
+Estilos en CSS personalizado
 
 Loader animado
 
@@ -94,9 +87,9 @@ Mensajes condicionales:
 
 “Cargando…”
 
-“Producto no encontrado”
-
 “Carrito vacío”
+
+“Producto no encontrado”
 
 “Sin stock”
 
@@ -132,8 +125,7 @@ Crear el archivo:
 
 src/firebase/config.js
 
-
-Con tu configuración:
+y agregar:
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -150,25 +142,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-4. Ejecutar modo desarrollo
+4. Ejecutar en modo desarrollo
 npm run dev
 
 🌐 Deploy (Vercel)
-
 Instalar Vercel:
-
 npm install -g vercel
 
-
 Generar build:
-
 npm run build
 
-
 Deployar:
-
 vercel
-
 
 Configuración recomendada:
 
