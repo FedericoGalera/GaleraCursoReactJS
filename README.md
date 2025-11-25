@@ -1,12 +1,10 @@
 🛍️ Feyoox Store
 E-commerce desarrollado con React + Firebase
-(Proyecto Final – Coderhouse ReactJS)
+
 ⭐ Descripción del proyecto
 
 Feyoox Store es una aplicación de e-commerce construida como una Single Page Application utilizando React + Vite, conectada en tiempo real a Firebase Firestore.
 La app permite navegar productos por categoría, ver sus detalles, manejar un carrito global con validación estricta de stock y completar una compra generando una orden real en la base de datos.
-
-El proyecto cumple el 100% de los requisitos del Trabajo Final de ReactJS (Coderhouse).
 
 🚀 Características principales
 🔹 SPA real con React Router
