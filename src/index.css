@@ -1,8 +1,4 @@
-/* ============================================
-    FEYOOX STORE - CSS FINAL v1.0
-   ============================================ */
-
-/* -------- RESET & BASE -------- */
+/* RESET & BASE */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: dark;
@@ -20,7 +16,7 @@ body {
   color: #e5e7eb;
 }
 
-/* -------- CONTAINERS -------- */
+/* CONTAINERS */
 .container {
   max-width: 1080px;
   margin: 24px auto;
@@ -38,9 +34,7 @@ body {
   color: #9ca3af;
 }
 
-/* ============================================
-    NAVBAR
-   ============================================ */
+/* NAVBAR */
 .navbar {
   position: sticky;
   top: 0;
@@ -127,9 +121,7 @@ body {
   font-weight: 600;
 }
 
-/* ============================================
-    GRID DE PRODUCTOS
-   ============================================ */
+/* GRID DE PRODUCTOS */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -198,9 +190,7 @@ body {
   background: #1d4ed8;
 }
 
-/* ============================================
-    DETALLE DE PRODUCTO
-   ============================================ */
+/* DETALLE DE PRODUCTO */
 .detail {
   display: flex;
   flex-wrap: wrap;
@@ -284,9 +274,7 @@ body {
   font-weight: bold;
 }
 
-/* ============================================
-    CARRITO (MEJORADO)
-   ============================================ */
+/* CARRITO */
 .cart-list {
   display: flex;
   flex-direction: column;
@@ -371,9 +359,7 @@ body {
   font-size: 22px;
 }
 
-/* ============================================
-    CHECKOUT
-   ============================================ */
+/* CHECKOUT */
 .checkout-form {
   display: flex;
   flex-direction: column;
@@ -393,9 +379,7 @@ body {
   color: #64748b;
 }
 
-/* ============================================
-    LOADER
-   ============================================ */
+/* LOADER */
 .loader {
   text-align: center;
   padding: 40px 0;
@@ -416,9 +400,7 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* ============================================
-    RESPONSIVE
-   ============================================ */
+/* RESPONSIVE */
 
 @media (max-width: 720px) {
   .detail {
